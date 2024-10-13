@@ -17,7 +17,7 @@ public class App {
             processes.add(subProcess);
             numbersTemp.add(pathFile);
         }
-        int numberSum = 0;
+
         for (Process subProcess : processes) {
             subProcess.waitFor();
         }
@@ -25,11 +25,13 @@ public class App {
 
         for (int i = 0; i < numbers.size(); i++) {
             String pathFile = "./output/temp/" + numbers.get(i) + ".txt";
-            numberSum = Integer.parseInt(FileHelper.getNumbersCount(pathFile));
             File file = new File(pathFile);
             file.delete();
         }
-        System.out.println("There are a total of "+ numberSum +" prime numbers in the output file");
+
+        System.out.println("There are " + FileHelper.getNumbersCount(ROUTE_FINAL) + " prime numbers.");
+        FileHelper.showPrimes(ROUTE_FINAL);
+
     }
 
-}
+} 
