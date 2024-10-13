@@ -18,7 +18,7 @@ public class FileHelper {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile, StandardCharsets.UTF_8))) {
             String line = reader.readLine();
 
-            while (line != null) {
+            if  (line != null) {
                 String[] numbersString = line.split(",");
 
                 for (String numberString : numbersString) {
