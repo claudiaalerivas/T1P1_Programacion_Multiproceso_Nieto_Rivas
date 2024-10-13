@@ -59,13 +59,39 @@ public class FileHelper {
         }
     }
 
-    public static int getNumbersCount(File file) {
-        int number = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
-            number = Integer.parseInt(reader.readLine());
+    public static int getNumbersCount(String outputFile) {
+        int count = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(outputFile, StandardCharsets.UTF_8))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                try {
+                    Integer.parseInt(line.trim());
+                    count++;
+                } catch (Exception e) {
+                    System.out.println("There is no number on the line.");
+                }
+            }
+
         } catch (Exception e) {
-            System.out.println("I cannot get the total number of prime numbers.");
+            System.out.println("Can´t read file:");
         }
-        return number;
+        return count;
+    }
+
+    public static void showPrimes(String outputPath) throws IOException {
+
+        System.out.println("Prime numbers found: ");
+        try (BufferedReader reader = new BufferedReader(new FileReader(outputPath))) {
+            String linea = reader.readLine();
+
+            while (linea != null) {
+                System.out.println(linea.trim());
+                linea = reader.readLine();
+            }
+
+        } catch (Exception e) {
+            System.out.println("Can´t read file:" + outputPath);
+        }
     }
 }
