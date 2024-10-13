@@ -1,7 +1,10 @@
 package org.salesianos.util;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -31,4 +34,28 @@ public class FileHelper {
         return numbers;
     }
 
+    public static void mergePrimeFiles(ArrayList<String> numbersTemp, String outputFile) throws IOException {
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(outputFile))) {
+            for (String route : numbersTemp) {
+                File file = new File(route);
+                if (file.exists() && file.length() != -1) {
+                    try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                        String line = reader.readLine();
+                        while (line != null) {
+                            writer.write(line);
+                            writer.newLine();
+                            line = reader.readLine();
+                        }
+                    } catch (Exception e) {
+                        System.out.println(" Can´t read file: " + file);
+                    }
+                } else {
+                    System.out.println("File doesn't exist or empty file: " + file);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error writing to file.");
+        }
+    }
 }
