@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 
 import org.salesianos.util.FileHelper;
@@ -21,6 +22,12 @@ public class App {
             subProcess.waitFor();
         }
         FileHelper.mergePrimeFiles(numbersTemp, ROUTE_FINAL);
+
+        for (int i = 0; i < numbers.size(); i++) {
+            String pathFile = "./output/temp/" + numbers.get(i) + ".txt";
+            File file = new File(pathFile);
+            file.delete();
+        }
 
     }
 
