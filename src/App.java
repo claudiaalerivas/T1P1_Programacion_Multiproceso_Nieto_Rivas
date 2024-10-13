@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import org.salesianos.util.FileHelper;
 import org.salesianos.util.ProcessLauncher;
 
 public class App {
@@ -19,6 +20,8 @@ public class App {
         for (Process subProcess : processes) {
             subProcess.waitFor();
         }
-        
+        FileHelper.mergePrimeFiles(numbersTemp, ROUTE_FINAL);
+
     }
+
 }
