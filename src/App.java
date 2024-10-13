@@ -17,6 +17,7 @@ public class App {
             processes.add(subProcess);
             numbersTemp.add(pathFile);
         }
+
         for (Process subProcess : processes) {
             subProcess.waitFor();
         }
@@ -27,6 +28,10 @@ public class App {
             File file = new File(pathFile);
             file.delete();
         }
+
+        System.out.println("There are " + FileHelper.getNumbersCount(ROUTE_FINAL) + " prime numbers.");
+        FileHelper.showPrimes(ROUTE_FINAL);
+
     }
 
-}
+} 
