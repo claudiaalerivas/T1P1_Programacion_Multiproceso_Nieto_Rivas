@@ -18,7 +18,7 @@ public class FileHelper {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFile, StandardCharsets.UTF_8))) {
             String line = reader.readLine();
 
-            if  (line != null) {
+            if (line != null) {
                 String[] numbersString = line.split(",");
 
                 for (String numberString : numbersString) {
@@ -57,5 +57,15 @@ public class FileHelper {
         } catch (Exception e) {
             System.out.println("Error writing to file.");
         }
+    }
+
+    public static int getNumbersCount(File file) {
+        int number = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(file, StandardCharsets.UTF_8))) {
+            number = Integer.parseInt(reader.readLine());
+        } catch (Exception e) {
+            System.out.println("I cannot get the total number of prime numbers.");
+        }
+        return number;
     }
 }
